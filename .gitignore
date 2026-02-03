@@ -118,3 +118,11 @@ dist
 .pnp.*
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
+/src/generated/prisma
+
+/src/generated/prisma
+
+prisma/dev.db
+dist
+Dockerfile.prod
+postgres_data
