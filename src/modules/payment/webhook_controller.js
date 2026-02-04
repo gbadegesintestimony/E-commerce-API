@@ -22,11 +22,15 @@ export const stripeWebhook = async (req, res) => {
   switch (event.type) {
     case "payment_intent.succeeded": {
       const paymentIntent = event.data.object;
-      console.log("Payment succeeded:", paymentIntent.id);
+      console.log("Payment confirmed for Order:", paymentIntent.id);
 
-      // TODO:
-      // - mark order as PAID
-      // - store payment reference
+      await prisma.order.update({
+        where: { id: orderId },
+        data: {
+          status: "PAID",
+          paymentId: paymentIntent.id,
+        },
+      });
       break;
     }
 
