@@ -21,3 +21,24 @@ export const getCategories = async (req, res) => {
     });
   }
 };
+
+export const updateCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const category = await categoryService.updateCategoryServices(id, name);
+    res.json(category);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+export const deleteCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await categoryService.deleteCategoryServices(id);
+    res.json({ message: "Category deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

@@ -6,7 +6,7 @@ export const addToCart = async (userId, productId, quantity) => {
   });
   if (!product) throw new Error("Product not found");
 
-  const existing = await prisma.product.findFirst({
+  const existing = await prisma.cartItem.findFirst({
     where: { userId, productId },
   });
 
@@ -18,7 +18,7 @@ export const addToCart = async (userId, productId, quantity) => {
   }
 
   return prisma.cartItem.create({
-    data: { userid, productId, quantity },
+    data: { userId, productId, quantity },
   });
 };
 

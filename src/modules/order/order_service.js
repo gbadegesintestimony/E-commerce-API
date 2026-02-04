@@ -14,7 +14,7 @@ export const checkOut = async (userId) => {
       if (item.product.stock < item.quantity) {
         throw new Error(`Not enough stock for ${item.product.name}`);
       }
-      total += items.product.price * item.quantity;
+      total += item.product.price * item.quantity;
     }
 
     const order = await tx.order.create({
